@@ -1,0 +1,107 @@
+{
+  "private": true,
+  "description": "A powerful micro front-end framework",
+  "scripts": {
+    "bootstrap": "pnpm install",
+    "build": "pnpm --parallel --filter @garfish/* --filter garfish run build",
+    "rebuild": "npm run clean-dist && npm run build",
+    "clean-dist": "pnpm -r exec -- rm -rf dist && rm -rf dist",
+    "prune": "pnpm -r exec -- rm -rf node_modules && rm -rf node_modules",
+    "dev": "pnpm --parallel --filter @garfish-dev/* run start",
+    "dev:docs": "pnpm --filter garfish-docs run start",
+    "build:docs": "pnpm --filter garfish-docs run build",
+    "build:watch": "cross-env WATCH=true pnpm build",
+    "test:e2e": "zx scripts/e2e.js",
+    "test:e2e:prod": "cross-env CI=true zx scripts/e2e.js",
+    "test:e2e:open": "cross-env TEST_ENV_OPEN=true zx scripts/e2e.js",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --collect-coverage",
+    "cy:open": "cypress open --config-file=cypress.config.ts",
+    "cy:run": "cypress run",
+    "type:check": "tsc -noEmit",
+    "reset": "pnpm -r exec -- rm -rf node_modules && pnpm -r exec -- rm -rf dist && rm -rf node_modules",
+    "setup": "cross-env DISABLE_GARFISH_CHECK_INTERNAL=true pnpm install",
+    "ls-lint": "ls-lint",
+    "lint": "eslint --ext .ts packages/*/*/src/**",
+    "reset-gittag": "git tag -l | xargs git tag -d && git fetch --prune",
+    "format": "prettier --write --parser typescript \"packages/**/*.ts?(x)\"",
+    "format:js": "prettier --write --parser typescript \"(packages|scripts)/**/*.js\"",
+    "format:md": "prettier --write \"**/*.md\"",
+    "release": "node ./scripts/release.js",
+    "release:canary": "node ./scripts/release.js --canary"
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write"
+    ],
+    "*.ts?(x)": [
+      "eslint --fix --config .eslintrc.js",
+      "prettier --parser=typescript --write"
+    ]
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
+  "author": "bytedance",
+  "license": "MIT",
+  "devDependencies": {
+    "@jsdevtools/version-bump-prompt": "6.1.0",
+    "@koa/cors": "3.1.0",
+    "@ls-lint/ls-lint": "1.10.0",
+    "@swc/core": "^1.2.192",
+    "@swc/jest": "^0.2.21",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@types/jasmine": "^3.5.14",
+    "@types/jest": "27.0.2",
+    "@types/node": "^12.20.52",
+    "@typescript-eslint/eslint-plugin": "5.4.0",
+    "@typescript-eslint/parser": "5.4.0",
+    "axios": "0.24.0",
+    "babel-polyfill": "6.26.0",
+    "chalk": "4.1.2",
+    "codecov": "^3.8.3",
+    "cross-env": "7.0.3",
+    "css.escape": "^1.5.1",
+    "cypress": "^10.3.0",
+    "dayjs": "^1.11.2",
+    "esbuild-plugin-replace": "1.0.7",
+    "eslint": "7.32.0",
+    "execa": "4.1.0",
+    "fs-extra": "10.0.0",
+    "http-server": "13.0.2",
+    "husky": "7.0.4",
+    "install": "0.13.0",
+    "isomorphic-fetch": "^3.0.0",
+    "jest": "27.3.1",
+    "jest-fetch-mock": "^3.0.3",
+    "kill-port": "1.6.1",
+    "lint-staged": "11.2.6",
+    "lodash": "4.17.21",
+    "minimist": "1.2.5",
+    "pnpm": "7.6.0",
+    "prettier": "2.4.1",
+    "prettier-eslint-cli": "5.0.1",
+    "rimraf": "3.0.2",
+    "semver": "^7.3.7",
+    "ts-jest": "27.0.7",
+    "tslib": "2.3.1",
+    "tsup": "5.7.2",
+    "typescript": "4.6.4",
+    "wait-on": "6.0.1",
+    "wireit": "^0.4.3",
+    "workspace-tools": "0.16.2",
+    "zx": "4.2.0"
+  },
+  "version": "1.19.8",
+  "packageManager": "pnpm@7.6.0",
+  "engines": {
+    "node": ">=16.14.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "esbuild": "0.14.22",
+      "stylus": "github:stylus/stylus#0.56.0"
+    }
+  }
+}

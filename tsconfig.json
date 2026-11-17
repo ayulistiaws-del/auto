@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "rootDir": ".",
+    "outDir": "dist",
+    "module": "ESNext",
+    "target": "es2016",
+    "resolveJsonModule": true,
+    "lib": ["ES2018","dom"],
+    "moduleResolution": "node",
+    "allowJs": true,
+    "sourceMap": true,
+    "declaration": true,
+    "noImplicitThis": true,
+    "esModuleInterop": true,
+    "emitDecoratorMetadata": true,
+    "strictNullChecks": true,
+    "experimentalDecorators": true,
+    "skipLibCheck": true,
+    "paths": {
+      "@garfish/*": ["packages/*/src"]
+    },
+    "types": ["jasmine", "jest"]
+  },
+  "include": [
+    "packages/*/src",
+    "packages/*/__tests__",
+    "packages/global.d.ts"
+  ]
+}

@@ -1,0 +1,25 @@
+ls:
+  packages/{src,__tests__}:
+    .js: camelCase
+    .ts: camelCase
+    .d.ts: camelCase
+    .spec.ts: camelCase
+
+  dev/*/{src}:
+    .js: camelCase | point.case
+    .ts: camelCase | point.case
+    .jsx: camelCase | point.case
+    .tsx: camelCase | point.case | PascalCase
+    .d.ts: camelCase
+    .component.ts: camelCase | point.case
+
+  website/{src,docs}:
+    .js: camelCase
+    .ts: camelCase
+    .jsx: camelCase
+    .tsx: camelCase
+    .d.ts: camelCase
+
+  scripts:
+    .js: camelCase
+
